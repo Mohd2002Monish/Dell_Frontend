@@ -1,8 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Loading from "../Components/Loading";
-// import AdminRoute from "../Components/AdminRoute";
+import AdminRoute from "../Components/AdminRoute";
 import PrivateRoutes from "../Components/PrivateRoute";
 import AdminPage from "../Pages/AdminPage";
 import Homepage from "../Pages/HomePage";
@@ -17,7 +16,9 @@ function AllRoutes() {
           path="/admin"
           element={
             <PrivateRoutes>
-              <AdminPage />
+              <AdminRoute>
+                <AdminPage />
+              </AdminRoute>
             </PrivateRoutes>
           }
         />

@@ -11,15 +11,17 @@ import {
   Text,
   Center,
 } from "@chakra-ui/react";
+
 import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../Redux/Auth/Actions";
 import { Link, useNavigate } from "react-router-dom";
 export default function SimpleCard() {
-  const {  loading } = useSelector((store) => {
+  const { loading, message, auth } = useSelector((store) => {
     return store.auth;
   });
+  console.log(message);
   const navi = useNavigate();
   const [Info, setInfo] = useState({
     email: "",
@@ -35,6 +37,7 @@ export default function SimpleCard() {
   };
   const submit = async () => {
     await dispatch(login({ email: Info.email, pass: Info.password }));
+
     if (!loading) {
       navi("/loading");
     }
@@ -75,9 +78,9 @@ export default function SimpleCard() {
                 type="password"
               />
             </FormControl>
-            {false ? (
+            {message ? (
               <Center>
-                <Text color={"red"}>Password is incorrect</Text>
+                <Text color={"red"}>{message}</Text>
               </Center>
             ) : null}
             <Stack spacing={10}>

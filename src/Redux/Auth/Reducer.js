@@ -18,7 +18,6 @@ const initialState = {
 };
 
 export const authReducer = (state = initialState, { type, payload }) => {
-  console.log(payload);
   switch (type) {
     case LOGIN_LOADING:
       return {
@@ -38,7 +37,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        error: true,
+        message: payload,
       };
     case RESET_AUTH:
       return {

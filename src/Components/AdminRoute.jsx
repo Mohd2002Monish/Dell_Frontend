@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 function AdminRoute({ children }) {
 
-  const { role } = useSelector((store) => {
+  const { user } = useSelector((store) => {
     return store.auth;
   });
     console.log()
 
-  if (role == "Admin") return <>{children}</>;
+  if (user == "Admin") return <>{children}</>;
   else {
-    return;
+    return <></>
   }
 }
 

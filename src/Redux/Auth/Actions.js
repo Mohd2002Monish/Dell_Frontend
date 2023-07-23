@@ -14,10 +14,7 @@ export const login = (user) => async (dispatch) => {
     dispatch({
       type: LOGIN_LOADING,
     });
-    const { data } = await axios.post(
-      "https://dellassignment.onrender.com/signin",
-      user
-    );
+    const { data } = await axios.post("http://localhost:8080/signin", user);
     console.log("data: ", data);
     dispatch({
       type: LOGIN_SUCCESS,
@@ -26,7 +23,7 @@ export const login = (user) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOGIN_ERROR,
-      payload: error.response.data.message,
+      payload: error.response.data.msg,
     });
   }
 };
