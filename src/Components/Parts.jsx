@@ -18,7 +18,7 @@ const Parts = ({ part, productId }) => {
       const response = await axios.post(
         `https://dellassignment.onrender.com/products/${productId}/removePart/${part.part_id}`
       );
-      console.log(response);
+     
       dispatch(getAllProducts(""));
     } catch (error) {
       console.error("Error removing part:", error);

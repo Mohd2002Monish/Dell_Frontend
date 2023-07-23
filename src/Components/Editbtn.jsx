@@ -9,7 +9,6 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  Image,
   Box,
   Input,
   Textarea,
@@ -30,7 +29,7 @@ const Editbtn = ({ product }) => {
   };
   const submit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    
     dispatch(updateProduct(product._id, formData));
     onClose();
   };

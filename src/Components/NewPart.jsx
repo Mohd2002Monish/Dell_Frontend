@@ -17,7 +17,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "../Redux/Products/Actions";
 const NewPart = ({ product_id, product_name }) => {
-  console.log(product_id);
+ 
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ const NewPart = ({ product_id, product_name }) => {
   };
 
   const handleSubmit = async (product_id, formData) => {
-    console.log(product_id);
+   
     try {
       const response = await axios.post(
         `https://dellassignment.onrender.com/products/${product_id}/addPart`,

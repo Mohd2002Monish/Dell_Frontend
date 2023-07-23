@@ -1,9 +1,6 @@
-
 import Loading from "../Components/Loading";
 
 function LoadingPage() {
- 
-
   return (
     <div>
       <Loading />

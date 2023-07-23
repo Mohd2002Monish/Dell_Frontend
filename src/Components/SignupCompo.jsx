@@ -9,11 +9,11 @@ import {
   InputRightElement,
   Stack,
   Button,
-  isLoading,
+  
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import axios from "axios";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -28,10 +28,10 @@ export default function LoginForm() {
     age: "",
   });
   const dispatch = useDispatch();
-  const { auth, loading, error } = useSelector((store) => {
+  const {  loading, } = useSelector((store) => {
     return store.auth;
   });
-    console.log(auth)
+
   const navigate = useNavigate();
   const handleChange = (event) => {
     setContactInfo({
@@ -41,7 +41,6 @@ export default function LoginForm() {
   };
 
   const postData = async () => {
-    console.log(contactInfo);
     await dispatch(signup(contactInfo));
     navigate("/login");
   };

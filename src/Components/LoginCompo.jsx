@@ -18,10 +18,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../Redux/Auth/Actions";
 import { Link, useNavigate } from "react-router-dom";
 export default function SimpleCard() {
-  const { loading, message, auth } = useSelector((store) => {
+  const { loading, message } = useSelector((store) => {
     return store.auth;
   });
-  console.log(message);
+  
   const navi = useNavigate();
   const [Info, setInfo] = useState({
     email: "",

@@ -13,13 +13,13 @@ function AdminPage() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProducts(""));
-  }, []);
-  
+  }, [dispatch]);
+
   return (
     <div>
       <Navbar />
       {AllProducts.loading ? (
-        <Box display={'flex'} justifyContent={'center'}>
+        <Box display={"flex"} justifyContent={"center"}>
           <CircularProgress isIndeterminate color="blue.400" />
         </Box>
       ) : (

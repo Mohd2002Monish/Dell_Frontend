@@ -7,16 +7,15 @@ function Loading() {
   const data = useSelector((store) => {
     return store.auth;
   });
-  console.log(data.user);
 
   const navi = useNavigate();
   useEffect(() => {
-    if (data.user == "Admin") {
+    if (data.user === "Admin") {
       navi("/admin");
     } else {
       navi("/");
     }
-  }, []);
+  }, [data.user, navi]);
   return (
     <div
       style={{

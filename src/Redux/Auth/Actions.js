@@ -14,8 +14,11 @@ export const login = (user) => async (dispatch) => {
     dispatch({
       type: LOGIN_LOADING,
     });
-    const { data } = await axios.post("http://localhost:8080/signin", user);
-    console.log("data: ", data);
+    const { data } = await axios.post(
+      "https://dellassignment.onrender.com/signin",
+      user
+    );
+
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data,
@@ -29,7 +32,6 @@ export const login = (user) => async (dispatch) => {
 };
 
 export const signup = (user) => async (dispatch) => {
-  console.log("user: ", user);
   try {
     dispatch({
       type: SIGNUP_LOADING,
@@ -38,7 +40,7 @@ export const signup = (user) => async (dispatch) => {
       "https://dellassignment.onrender.com/signup",
       user
     );
-    console.log("data: ", data);
+
     dispatch({
       type: SIGNUP_SUCCESS,
       payload: data,

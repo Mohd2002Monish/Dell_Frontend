@@ -8,7 +8,6 @@ import { authReducer } from "./Auth/Reducer";
 import { productReducer } from "./Products/Reducer";
 import thunk from "redux-thunk";
 
-
 const rootReducer = combineReducers({
   auth: authReducer,
   products: productReducer,
@@ -22,4 +21,3 @@ export const store = legacy_createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
-

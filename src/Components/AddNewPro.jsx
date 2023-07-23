@@ -9,7 +9,6 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  Image,
   Box,
   Input,
   Textarea,
@@ -48,7 +47,7 @@ const InputPopup = () => {
   };
   const submit = (e) => {
     e.preventDefault();
-    console.log(formData);
+  
     dispatch(addProduct(formData));
     onClose();
   };

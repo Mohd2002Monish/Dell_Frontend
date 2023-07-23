@@ -1,6 +1,5 @@
 import Parts from "./Parts";
 import "../App.css";
-import axios from "axios";
 import { Box, Button } from "@chakra-ui/react";
 import AddNewPro from "../Components/AddNewPro";
 import { useDispatch } from "react-redux";

@@ -29,6 +29,7 @@ const HomeParts = ({ part }) => {
       status: "success",
       duration: 9000,
       isClosable: true,
+      position: "top",
     });
   };
   return (

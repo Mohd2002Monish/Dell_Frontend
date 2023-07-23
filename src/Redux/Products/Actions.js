@@ -9,9 +9,6 @@ import {
   GET_ALL_PRODUCTS_FAILURE,
   GET_ALL_PRODUCTS_REQUEST,
   GET_ALL_PRODUCTS_SUCCESS,
-  GET_SINGLE_PRODUCT_FAILURE,
-  GET_SINGLE_PRODUCT_REQUEST,
-  GET_SINGLE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_FAILURE,
   UPDATE_PRODUCT_REQUEST,
   UPDATE_PRODUCT_SUCCESS,
@@ -20,11 +17,11 @@ import {
 export const getAllProducts = (query) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
-    console.log(query);
+
     const res = await axios.get(
       `https://dellassignment.onrender.com/products?q=${query}`
     );
-    console.log(res.data);
+
     dispatch({ type: GET_ALL_PRODUCTS_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({
@@ -33,37 +30,18 @@ export const getAllProducts = (query) => async (dispatch) => {
   }
 };
 
-export const getSingleProduct = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: GET_SINGLE_PRODUCT_REQUEST });
-
-    const res = await axios.get(`/api/products/${id}`);
-
-    dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: res.data.product });
-  } catch (error) {
-    dispatch({
-      type: GET_SINGLE_PRODUCT_FAILURE,
-    });
-  }
-};
-
-//admin only
-
 export const addProduct = (data) => async (dispatch) => {
   try {
     dispatch({ type: ADD_PRODUCT_REQUEST });
 
-    const res = await fetch(
-      "https://dellassignment.onrender.com/products",
-      {
-        body: JSON.stringify(data),
-        method: "POST",
-        headers: {
-          token: "admin token",
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const res = await fetch("https://dellassignment.onrender.com/products", {
+      body: JSON.stringify(data),
+      method: "POST",
+      headers: {
+        token: "admin token",
+        "Content-Type": "application/json",
+      },
+    });
     let data1 = await res.json();
 
     dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data1 });
