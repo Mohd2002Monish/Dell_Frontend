@@ -1,50 +1,24 @@
 import Parts from "./Parts";
 import "../App.css";
-import {
-  Input,
-  InputGroup,
-  InputRightElement,
-  IconButton,
-} from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import axios from "axios";
 import { Box, Button } from "@chakra-ui/react";
 import AddNewPro from "../Components/AddNewPro";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "../Redux/Products/Actions";
 import Editbtn from "./Editbtn";
-import { useState } from "react";
-const ProductList = ({ products }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+import SearchBar from "./SearchBar";
+import NewPart from "./NewPart";
 
-  const handleSearch = () => {
-    // Pass the search term to the parent component or perform any search logic here
-    // onSearch(searchTerm);
-  };
+const ProductList = ({ products }) => {
   const dispatch = useDispatch();
   const handleDelete = (product) => {
     dispatch(deleteProduct(product._id));
   };
+
   return (
     <div>
       <div className="newProduct">
-        <Box w={"70%"} >
-          <InputGroup>
-            <Input
-              placeholder="Search"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <InputRightElement>
-              <IconButton
-                icon={<SearchIcon />}
-                size="sm"
-                variant="ghost"
-                onClick={handleSearch}
-                aria-label="Search"
-              />
-            </InputRightElement>
-          </InputGroup>{" "}
-        </Box>
+        <SearchBar />
         <AddNewPro />
       </div>
       <div className="grid">
@@ -80,11 +54,19 @@ const ProductList = ({ products }) => {
                   alignItems={"center"}
                   padding={"20px"}
                 >
-                  <b>Parts</b> <Button color={"green"}>Add New Parts +</Button>
+                  <b>Parts</b>{" "}
+                  <NewPart
+                    product_name={product.product_name}
+                    product_id={product.product_id}
+                  />
                 </Box>
 
                 {product.parts.map((part) => (
-                  <Parts key={part.part_id} part={part} />
+                  <Parts
+                    key={part.part_id}
+                    productId={product.product_id}
+                    part={part}
+                  />
                 ))}
               </div>
             </div>

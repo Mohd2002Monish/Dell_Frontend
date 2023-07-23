@@ -10,12 +10,14 @@ import {
 import axios from "axios";
 
 export const login = (user) => async (dispatch) => {
- 
   try {
     dispatch({
       type: LOGIN_LOADING,
     });
-    const { data } = await axios.post("http://localhost:8080/signin", user);
+    const { data } = await axios.post(
+      "https://dellassignment.onrender.com/signin",
+      user
+    );
     console.log("data: ", data);
     dispatch({
       type: LOGIN_SUCCESS,
@@ -35,7 +37,10 @@ export const signup = (user) => async (dispatch) => {
     dispatch({
       type: SIGNUP_LOADING,
     });
-    const { data } = await axios.post("http://localhost:8080/signup", user);
+    const { data } = await axios.post(
+      "https://dellassignment.onrender.com/signup",
+      user
+    );
     console.log("data: ", data);
     dispatch({
       type: SIGNUP_SUCCESS,

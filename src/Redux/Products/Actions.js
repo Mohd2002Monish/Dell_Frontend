@@ -17,16 +17,13 @@ import {
   UPDATE_PRODUCT_SUCCESS,
 } from "./ActionTypes";
 
-export const getAllProducts = () => async (dispatch) => {
-  console.log("last");
+export const getAllProducts = (query) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
-    // let q = "";
-    // for (let key in query) {
-    //   q += `${key}=${query[key]}&`;
-    // }
-
-    const res = await axios.get(`http://localhost:8080/products`);
+    console.log(query);
+    const res = await axios.get(
+      `https://dellassignment.onrender.com/products?q=${query}`
+    );
     console.log(res.data);
     dispatch({ type: GET_ALL_PRODUCTS_SUCCESS, payload: res.data });
   } catch (error) {
@@ -56,14 +53,17 @@ export const addProduct = (data) => async (dispatch) => {
   try {
     dispatch({ type: ADD_PRODUCT_REQUEST });
 
-    const res = await fetch("http://localhost:8080/products", {
-      body: JSON.stringify(data),
-      method: "POST",
-      headers: {
-        token: "admin token",
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      "https://dellassignment.onrender.com/products",
+      {
+        body: JSON.stringify(data),
+        method: "POST",
+        headers: {
+          token: "admin token",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     let data1 = await res.json();
 
     dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data1 });
@@ -78,7 +78,7 @@ export const updateProduct = (id, data) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
-    await fetch(`http://localhost:8080/products/${id}`, {
+    await fetch(`https://dellassignment.onrender.com/products/${id}`, {
       body: JSON.stringify(data),
       method: "PUT",
       headers: {
@@ -99,7 +99,7 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    await fetch(`http://localhost:8080/products/${id}`, {
+    await fetch(`https://dellassignment.onrender.com/products/${id}`, {
       method: "DELETE",
       headers: {
         token: "admin token",

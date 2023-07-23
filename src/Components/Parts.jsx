@@ -8,7 +8,23 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-const Parts = ({ part }) => {
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getAllProducts } from "../Redux/Products/Actions";
+const Parts = ({ part, productId }) => {
+  const dispatch = useDispatch();
+  const removePart = async () => {
+    try {
+      const response = await axios.post(
+        `https://dellassignment.onrender.com/products/${productId}/removePart/${part.part_id}`
+      );
+      console.log(response);
+      dispatch(getAllProducts(""));
+    } catch (error) {
+      console.error("Error removing part:", error);
+      throw error;
+    }
+  };
   return (
     <div>
       <Box className="partBox">
@@ -36,7 +52,12 @@ const Parts = ({ part }) => {
           </AccordionItem>
         </Accordion>
         <Flex gap={"10px"}>
-          <Button colorScheme={"red"}>Delete</Button>
+          <Button
+            onClick={() => removePart(part, productId)}
+            colorScheme={"red"}
+          >
+            Delete
+          </Button>
         </Flex>
       </Box>
     </div>

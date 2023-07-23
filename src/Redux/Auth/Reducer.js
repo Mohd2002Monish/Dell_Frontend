@@ -14,6 +14,7 @@ const initialState = {
   error: false,
   message: "",
   user: {},
+  auth: false,
 };
 
 export const authReducer = (state = initialState, { type, payload }) => {
@@ -31,7 +32,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
         message: payload.msg,
         user: payload.userName,
         role: payload.role,
-        auth: payload.auth,
+        auth: true,
       };
     case LOGIN_ERROR:
       return {
@@ -45,6 +46,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
         loading: false,
         error: false,
         message: "",
+        auth: false,
       };
 
     case SIGNUP_LOADING:

@@ -9,7 +9,7 @@ function Homepage() {
   });
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getAllProducts(""));
   }, []);
   return (
     <div>

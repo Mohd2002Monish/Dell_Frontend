@@ -11,19 +11,30 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
+import SearchBar from "./SearchBar";
 const HomeCompo = ({ products }) => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  
+  const handleTost = (product) => {
+    onClose();
+    toast({
+      title: "Request Accepted.",
+      description: `We've Accept your request for ${product.product_name}.`,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  };
   return (
     <div>
       <div className="grid">
+        <div className="newProduct">
+          <SearchBar />
+        </div>
         {products.map((product) => (
-          <Box
-            key={product.product_id}
-            to={`product/${product.product_id}`}
-            className="proConatiner"
-          >
+          <Box key={product.product_id} className="proConatiner">
             <div key={product.product_id} className="product">
               <div className="productImg">
                 {" "}
@@ -57,8 +68,10 @@ const HomeCompo = ({ products }) => {
                 ))}
               </div>
             </div>
-            <Box className="productBtn">
-              <Button onClick={onOpen} colorScheme={"green"}>Request</Button>
+            <Box>
+              <Button onClick={onOpen} color={"green"}>
+                Request
+              </Button>
               <Modal
                 closeOnOverlayClick={false}
                 isOpen={isOpen}
@@ -66,13 +79,23 @@ const HomeCompo = ({ products }) => {
               >
                 <ModalOverlay />
                 <ModalContent>
-                  <ModalHeader>Create your account</ModalHeader>
+                  <ModalHeader>Request For {product.product_name}</ModalHeader>
                   <ModalCloseButton />
-                  <ModalBody pb={6}>{/* <Lorem count={2} /> */}</ModalBody>
+                  <ModalBody pb={6}>
+                    <p>{product.description}</p>
+                    <p>
+                      <b>Type</b> {product.product_type}
+                    </p>
+                    <img src={product.img} />
+                  </ModalBody>
 
                   <ModalFooter>
-                    <Button colorScheme="blue" mr={3}>
-                      Save
+                    <Button
+                      onClick={() => handleTost(product)}
+                      colorScheme="green"
+                      mr={3}
+                    >
+                      Make Request
                     </Button>
                     <Button onClick={onClose}>Cancel</Button>
                   </ModalFooter>
