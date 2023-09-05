@@ -1,4 +1,4 @@
-# React Assignment 
+# Mini full-stack e-commerce project
 
 ## Description
 
